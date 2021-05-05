@@ -24,7 +24,7 @@ namespace ARPGGamepadCore
             ProfilesPath = execPath + @"\Profiles";
 
             Profiles = new Dictionary<string, GamepadProfile>();
-            ReloadProfiles();
+            //ReloadProfiles();
         }
 
         public void ReloadProfiles()

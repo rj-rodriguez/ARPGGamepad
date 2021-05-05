@@ -29,9 +29,10 @@ namespace ARPGGamepadWPF
         ProfileManager profileManager;
         Timer timer;
 
-        IGamepadTranslator gamepadTranslator;
+        IGamepadTranslator gamepadAimOverlayTranslator;
+        IGamepadTranslator gamepadBasicTranslator;
 
-        private bool running = false;
+        //private bool running = false;
 
         public MainWindow(IInputHelper inputHelper, IOverlayHelper overlayHelper, IGamepadHelper gamepadHelper)
         {
@@ -47,23 +48,31 @@ namespace ARPGGamepadWPF
             timer = new Timer(5);
             timer.Elapsed += Timer_Elapsed;
 
-            profileManager = new ProfileManager(AppDomain.CurrentDomain.BaseDirectory, (int)SystemParameters.FullPrimaryScreenWidth, (int)SystemParameters.FullPrimaryScreenHeight);
-            gamepadTranslator = new OverlayAimTranslator(inputHelper, overlayHelper);
+            profileManager = new ProfileManager(AppDomain.CurrentDomain.BaseDirectory, (int)SystemParameters.PrimaryScreenWidth, (int)SystemParameters.PrimaryScreenHeight);
+            profileManager.ReloadProfiles();
+            gamepadBasicTranslator = new BasicTranslator(inputHelper);
+            gamepadAimOverlayTranslator = new OverlayAimTranslator(inputHelper, overlayHelper);
 
             ViewModel = new AppViewModel
             {
                 ProfileManager = profileManager,
-                Profile = profileManager.Profiles[ProfileManager.DefaultProfile]
+                Profile = profileManager.Profiles[ProfileManager.DefaultProfile],
+                GamepadTranslator = gamepadAimOverlayTranslator,
+                GamepadIndex = 0,
+                Gamepads = new List<KeyValuePair<int, string>>
+                {
+                    new KeyValuePair<int, string>(0, "Gamepad 0"),
+                    new KeyValuePair<int, string>(1, "Gamepad 1"),
+                    new KeyValuePair<int, string>(2, "Gamepad 2"),
+                    new KeyValuePair<int, string>(3, "Gamepad 3"),
+                },
+                Running = false
             };
+            
             DataContext = ViewModel;
             ReloadConfigurations();
 
-            //hardcoded selections for initial tests
-            ViewModel.Profile = profileManager.Profiles["POE"];
-            ViewModel.Profile.SelectedResolution = ViewModel.Profile.Resolutions[0];
-            gamepadHelper.OpenGamepad(0, ViewModel.Profile);
-            StatusBarMessage.Text = $"Loaded {ViewModel.Profile.Name} profile correctly";
-            //hardcoded selections end
+            ViewModel.Status = "Startup finished";
         }
 
         private void Timer_Elapsed(object sender, ElapsedEventArgs e)
@@ -73,15 +82,15 @@ namespace ARPGGamepadWPF
                 try
                 {
                     gamepadHelper.Update();
-                    if (gamepadHelper.Connected && gamepadTranslator != null)
+                    if (gamepadHelper.Connected && ViewModel.GamepadTranslator != null)
                     {
-                        gamepadTranslator.Process(ViewModel.Profile.SelectedResolution);
+                        ViewModel.GamepadTranslator.Process(ViewModel.Profile.SelectedResolution);
                     }
                 }
                 catch (Exception ex)
                 {
                     timer.Stop();
-                    StatusBarMessage.Text = $"Error: {ex.Message}";
+                    ViewModel.Status = $"Error: {ex.Message}";
                 }
             });
         }
@@ -93,65 +102,105 @@ namespace ARPGGamepadWPF
             if (profileManager.Profiles.Count > 0)
                 ViewModel.Profile = profileManager.Profiles[ProfileManager.DefaultProfile];
             
-            StatusBarMessage.Text = $"Loaded {ViewModel.Profile.Name} profile correctly";
+            ViewModel.Status = $"Loaded {ViewModel.Profile.Name} profile correctly";
         }
 
         private void GamepadHelper_OnAnalogUpdate(object sender, GamepadHelperEventArgs e)
         {
-            if (running)
-                gamepadTranslator.SendThumbstickChange(e.XPosition, e.YPosition, e.AnalogConfig, e.Side);
+            if (ViewModel.Running)
+                ViewModel.GamepadTranslator.SendThumbstickChange(e.XPosition, e.YPosition, e.AnalogConfig, e.Side);
         }
 
         private void GamepadHelper_OnButtonDown(object sender, GamepadHelperEventArgs e)
         {
-            if (running)
-                gamepadTranslator.SendButtonDown(e.Button);
+            if (ViewModel.Running)
+                ViewModel.GamepadTranslator.SendButtonDown(e.Button);
         }
 
         private void GamepadHelper_OnButtonUp(object sender, GamepadHelperEventArgs e)
         {
-            if (running)
-                gamepadTranslator.SendButtonUp(e.Button);
+            if (ViewModel.Running)
+                ViewModel.GamepadTranslator.SendButtonUp(e.Button);
         }
 
         private void GamepadHelper_OnDisconnected(object sender, EventArgs e)
         {
-            StatusBarMessage.Text = $"Device {gamepadHelper.DeviceId} is not connected.";
+            ViewModel.Status = $"Device {gamepadHelper.DeviceId} is not connected.";
         }
 
         private void GamepadHelper_OnConnected(object sender, EventArgs e)
         {
-            StatusBarMessage.Text = $"Device {gamepadHelper.DeviceId} is connected.";
+            ViewModel.Status = $"Device {gamepadHelper.DeviceId} is connected.";
         }
 
         private void StartButton_Click(object sender, RoutedEventArgs e)
         {
-            running = !running;
-            StartButton.Content = running ? "Stop" : "Start";
-            if (running)
+            if (VirtualAimMode.IsChecked.HasValue && VirtualAimMode.IsChecked.Value)
+                ViewModel.GamepadTranslator = gamepadAimOverlayTranslator;
+            else
+                ViewModel.GamepadTranslator = gamepadBasicTranslator;
+
+            ViewModel.Running = !ViewModel.Running;
+            StartButton.Content = ViewModel.Running ? "Stop" : "Start";
+            if (ViewModel.Running)
             {
+                gamepadHelper.OpenGamepad(ViewModel.GamepadIndex, ViewModel.Profile);
+                ViewModel.GamepadTranslator.Start();
                 timer.Start();
-                gamepadTranslator.Start();
             }
             else
             {
-                gamepadTranslator.Stop();
                 timer.Stop();
+                ViewModel.GamepadTranslator.Stop();
             }
         }
 
         private void TheWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            gamepadTranslator.Stop();
+            ViewModel.GamepadTranslator.Stop();
             if (timer.Enabled)
                 timer.Stop();
             timer.Dispose();
-            gamepadTranslator.Dispose();
+            gamepadBasicTranslator.Dispose();
+            gamepadAimOverlayTranslator.Dispose();
         }
 
         private void TheWindow_Loaded(object sender, RoutedEventArgs e)
         {
-            gamepadTranslator.Init(this);
+            gamepadBasicTranslator.Init(this);
+            gamepadAimOverlayTranslator.Init(this);
         }
+
+        private void GamepadSelector_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (e.AddedItems.Count > 0)
+            {
+                var selectedItem = (KeyValuePair<int, string>)e.AddedItems[0];
+                ViewModel.GamepadIndex = selectedItem.Key;
+                gamepadHelper.OpenGamepad(ViewModel.GamepadIndex, ViewModel.Profile);
+                ViewModel.Status = $"Selected the gamepad at index {ViewModel.GamepadIndex}";
+            }
+        }
+
+        private void ProfileSelector_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (e.AddedItems.Count > 0)
+            {
+                var selectedItem = (KeyValuePair<string, GamepadProfile>)e.AddedItems[0];
+                ViewModel.Profile = selectedItem.Value;
+                ResolutionSelector.SelectedIndex = 0;
+                ViewModel.Status = $"Selected game profile";
+            }
+        }
+
+        private void ResolutionSelector_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (e.AddedItems.Count > 0)
+            {
+                var selectedItem = (ResolutionConfig)e.AddedItems[0];
+                ViewModel.SelectedResolution = selectedItem;
+            }
+        }
+
     }
 }

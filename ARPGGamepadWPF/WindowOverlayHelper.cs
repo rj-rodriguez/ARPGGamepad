@@ -13,42 +13,6 @@ namespace ARPGGamepadWPF
 {
     public class WindowOverlayHelper : Window, IOverlayHelper
     {
-        public static readonly DependencyProperty IsTopmostProperty =
-            DependencyProperty.Register("IsTopmost",
-                                        typeof(bool),
-                                        typeof(WindowOverlayHelper),
-                                        new FrameworkPropertyMetadata(false, OnIsTopmostChanged));
-
-        public static readonly DependencyProperty AllowOutsideScreenPlacementProperty =
-            DependencyProperty.RegisterAttached("AllowOutsideScreenPlacement",
-                                                typeof(bool),
-                                                typeof(WindowOverlayHelper),
-                                                new UIPropertyMetadata(false));
-
-        public static readonly DependencyProperty ParentWindowProperty =
-            DependencyProperty.RegisterAttached("ParentWindow",
-                                                typeof(Window),
-                                                typeof(WindowOverlayHelper),
-                                                new UIPropertyMetadata(null, ParentWindowPropertyChanged));
-
-        public static readonly DependencyProperty FullscreenProperty =
-            DependencyProperty.RegisterAttached("Fullscreen",
-                                                typeof(bool),
-                                                typeof(WindowOverlayHelper),
-                                                new UIPropertyMetadata(false));
-
-        private static void OnIsTopmostChanged(DependencyObject source, DependencyPropertyChangedEventArgs e)
-        {
-            WindowOverlayHelper windowOverlayHelper = source as WindowOverlayHelper;
-            windowOverlayHelper.SetTopmostState(windowOverlayHelper.IsTopmost);
-        }
-
-        private static void ParentWindowPropertyChanged(DependencyObject source, DependencyPropertyChangedEventArgs e)
-        {
-            WindowOverlayHelper windowOverlayHelper = source as WindowOverlayHelper;
-            windowOverlayHelper.ParentWindowChanged();
-        }
-
         private bool? m_appliedTopMost;
         private bool m_alreadyLoaded;
         private Window m_parentWindow;
@@ -59,15 +23,17 @@ namespace ARPGGamepadWPF
 
         public WindowOverlayHelper()
         {
-            Loaded += OnPopupLoaded;
-            Unloaded += OnPopupUnloaded;
+            Loaded += OnWindowLoaded;
+            Unloaded += OnWindowUnloaded;
 
             WindowState = WindowState.Maximized;
             WindowStyle = WindowStyle.None;
             AllowsTransparency = true;
             Background = Brushes.Transparent;
             Topmost = true;
+            
             Fullscreen = true;
+            IsTopmost = true;
 
             var reticleDrawing = new ImageDrawing();
             reticleDrawing.Rect = new Rect(0, 0, 33, 33);
@@ -87,95 +53,10 @@ namespace ARPGGamepadWPF
             this.AddChild(canvasArea);
         }
 
-        public bool Fullscreen
-        {
-            get { return (bool)GetValue(FullscreenProperty); }
-            set { SetValue(FullscreenProperty, value); }
-        }
-        public bool IsTopmost
-        {
-            get { return (bool)GetValue(IsTopmostProperty); }
-            set { SetValue(IsTopmostProperty, value); }
-        }
-        public bool AllowOutsideScreenPlacement
-        {
-            get { return (bool)GetValue(AllowOutsideScreenPlacementProperty); }
-            set { SetValue(AllowOutsideScreenPlacementProperty, value); }
-        }
-        public Window ParentWindow
-        {
-            get { return (Window)GetValue(ParentWindowProperty); }
-            set { SetValue(ParentWindowProperty, value); }
-        }
+        public bool Fullscreen { get; set; }
+        public bool IsTopmost { get; set; }
 
-        private void ParentWindowChanged()
-        {
-            if (ParentWindow != null)
-            {
-                ParentWindow.LocationChanged += (sender, e2) =>
-                {
-                    UpdatePopupPosition();
-                };
-                ParentWindow.SizeChanged += (sender, e2) =>
-                {
-                    UpdatePopupPosition();
-                };
-            }
-        }
-
-        private void UpdatePopupPosition()
-        {
-            FrameworkElement child = canvasArea;
-
-            if (PresentationSource.FromVisual(this) != null &&
-                AllowOutsideScreenPlacement == true)
-            {
-                double leftOffset = CutLeft(this);
-                double topOffset = CutTop(this);
-                double rightOffset = CutRight(this);
-                double bottomOffset = CutBottom(this);
-                Debug.WriteLine(bottomOffset);
-                if (Fullscreen)
-                {
-                    this.Width = SystemParameters.PrimaryScreenWidth;
-                    this.Height = SystemParameters.PrimaryScreenHeight;
-                }
-                else
-                {
-                    this.Width = Math.Max(0, Math.Min(leftOffset, rightOffset) + this.ActualWidth);
-                    this.Height = Math.Max(0, Math.Min(topOffset, bottomOffset) + this.ActualHeight);
-                }
-
-                if (child != null)
-                {
-                    child.Margin = new Thickness(leftOffset, topOffset, rightOffset, bottomOffset);
-                }
-            }
-        }
-        private double CutLeft(FrameworkElement placementTarget)
-        {
-            Point point = placementTarget.PointToScreen(new Point(0, placementTarget.ActualWidth));
-            return Math.Min(0, point.X);
-        }
-        private double CutTop(FrameworkElement placementTarget)
-        {
-            Point point = placementTarget.PointToScreen(new Point(placementTarget.ActualHeight, 0));
-            return Math.Min(0, point.Y);
-        }
-        private double CutRight(FrameworkElement placementTarget)
-        {
-            Point point = placementTarget.PointToScreen(new Point(0, placementTarget.ActualWidth));
-            point.X += placementTarget.ActualWidth;
-            return Math.Min(0, SystemParameters.VirtualScreenWidth - (Math.Max(SystemParameters.VirtualScreenWidth, point.X)));
-        }
-        private double CutBottom(FrameworkElement placementTarget)
-        {
-            Point point = placementTarget.PointToScreen(new Point(placementTarget.ActualHeight, 0));
-            point.Y += placementTarget.ActualHeight;
-            return Math.Min(0, SystemParameters.VirtualScreenHeight - (Math.Max(SystemParameters.VirtualScreenHeight, point.Y)));
-        }
-
-        private void OnPopupLoaded(object sender, RoutedEventArgs e)
+        private void OnWindowLoaded(object sender, RoutedEventArgs e)
         {
             if (m_alreadyLoaded)
                 return;
@@ -196,7 +77,7 @@ namespace ARPGGamepadWPF
             m_parentWindow.Deactivated += OnParentWindowDeactivated;
         }
 
-        private void OnPopupUnloaded(object sender, RoutedEventArgs e)
+        private void OnWindowUnloaded(object sender, RoutedEventArgs e)
         {
             if (m_parentWindow == null)
                 return;

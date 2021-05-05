@@ -7,6 +7,7 @@ namespace ARPGGamepadCore
         public int ScreenHeight { get; init; }
         public AnalogConfig LeftAnalog { get; init; }
         public AnalogConfig RightAnalog { get; init; }
+        public string Name => $"{ScreenWidth}x{ScreenHeight}";
 
         public ResolutionConfig(int screenWidth, int screenHeight, AnalogConfig leftAnalog, AnalogConfig rightAnalog) =>
             (ScreenWidth, ScreenHeight, LeftAnalog, RightAnalog) = (screenWidth, screenHeight, LeftAnalog, RightAnalog);
