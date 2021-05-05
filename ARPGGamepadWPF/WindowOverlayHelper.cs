@@ -1,10 +1,8 @@
 ﻿using System;
-using System.ComponentModel;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Controls.Primitives;
 using System.Windows.Input;
 using System.Windows.Interop;
 using System.Windows.Media;
@@ -20,12 +18,6 @@ namespace ARPGGamepadWPF
                                         typeof(bool),
                                         typeof(WindowOverlayHelper),
                                         new FrameworkPropertyMetadata(false, OnIsTopmostChanged));
-
-        public static readonly DependencyProperty FollowPlacementTargetProperty =
-            DependencyProperty.RegisterAttached("FollowPlacementTarget",
-                                                typeof(bool),
-                                                typeof(WindowOverlayHelper),
-                                                new UIPropertyMetadata(false));
 
         public static readonly DependencyProperty AllowOutsideScreenPlacementProperty =
             DependencyProperty.RegisterAttached("AllowOutsideScreenPlacement",
@@ -75,6 +67,7 @@ namespace ARPGGamepadWPF
             AllowsTransparency = true;
             Background = Brushes.Transparent;
             Topmost = true;
+            Fullscreen = true;
 
             var reticleDrawing = new ImageDrawing();
             reticleDrawing.Rect = new Rect(0, 0, 33, 33);
@@ -104,11 +97,6 @@ namespace ARPGGamepadWPF
             get { return (bool)GetValue(IsTopmostProperty); }
             set { SetValue(IsTopmostProperty, value); }
         }
-        public bool FollowPlacementTarget
-        {
-            get { return (bool)GetValue(FollowPlacementTargetProperty); }
-            set { SetValue(FollowPlacementTargetProperty, value); }
-        }
         public bool AllowOutsideScreenPlacement
         {
             get { return (bool)GetValue(AllowOutsideScreenPlacementProperty); }
@@ -133,17 +121,6 @@ namespace ARPGGamepadWPF
                     UpdatePopupPosition();
                 };
             }
-        }
-        private void PlacementTargetChanged(object sender, EventArgs e)
-        {
-            //FrameworkElement placementTarget = this.PlacementTarget as FrameworkElement;
-            //if (placementTarget != null)
-            //{
-            //    placementTarget.SizeChanged += (sender2, e2) =>
-            //    {
-            //        UpdatePopupPosition();
-            //    };
-            //}
         }
 
         private void UpdatePopupPosition()
@@ -174,11 +151,6 @@ namespace ARPGGamepadWPF
                     child.Margin = new Thickness(leftOffset, topOffset, rightOffset, bottomOffset);
                 }
             }
-            //if (FollowPlacementTarget == true)
-            //{
-            //    this.HorizontalOffset += 0.01;
-            //    this.HorizontalOffset -= 0.01;
-            //}
         }
         private double CutLeft(FrameworkElement placementTarget)
         {
@@ -253,12 +225,6 @@ namespace ARPGGamepadWPF
                 m_parentWindow.Activate();
             }
         }
-
-        //protected override void OnOpened(EventArgs e)
-        //{
-        //    SetTopmostState(IsTopmost);
-        //    base.OnOpened(e);
-        //}
 
         private void SetTopmostState(bool isTop)
         {
