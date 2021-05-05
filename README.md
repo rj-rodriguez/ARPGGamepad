@@ -85,5 +85,6 @@ Not really, unless I have the game and play it. But that's what the profile edit
 One note, 2 games I couldn't use this app with are:
 Sacred 2, the way the game handles keyboard and mouse input seems to be lower level that the windows event I use,
 so it doesn't recognize any inputs created by this app.
+
 Wolcen, it can technically work, but the game already sets up mouse movement on gamepads that cannot be disabled,
 so it messes up our mouse movements.
