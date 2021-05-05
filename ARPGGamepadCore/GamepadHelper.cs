@@ -145,7 +145,7 @@ namespace ARPGGamepadCore
                 {
                     if (lastDPadButton != null)
                     {
-                        OnButtonUp?.Invoke(this, new GamepadHelperEventArgs(currentButton));
+                        OnButtonUp?.Invoke(this, new GamepadHelperEventArgs(lastDPadButton));
                     }
                     if (currentButton != null)
                     {
