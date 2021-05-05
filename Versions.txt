@@ -1,10 +1,13 @@
 2.0
+- Last changes done before uploading to github
 - Moved to .Net 5
-- Split into ARPGGamepadCore and ARPGGamepadWinForm, only specific winforms and UI related code is in there
+- Split into ARPGGamepadCore, ARPGGamepadWinForm and ARPGGamepadWPF, to split only specific winforms and UI related code is in there
 - Refactored GamepadConfiguration and its components (some changed into records)
 - Moved serialization code into Core, creating GamepadConfigurationManager, now saving and loading profiles is independent from UI project
 - Small update on Profile json structure
-- Dx Overlay not working
+- Dx Overlay not working on WinForm project anymore, some issues with the dlls, will probably remain like this
+- Initial WPF version, supports virtual aim overlay, will support selecting a profile, but no editing for initial version
+- Split Gamepad implementation and created IGamepadHelper, this should allow support for gamepad support other than XInput
 1.3
 - Enabled Toggle mode for buttons
 1.2.9
