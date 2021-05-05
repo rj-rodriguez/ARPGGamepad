@@ -140,16 +140,13 @@ namespace ARPGGamepadCore
                 return;
             }
 
-            //Buttons Process
-            while (PressedButtons.Count > 0)
+            while (PressedButtons.TryPop(out var button))
             {
-                var button = PressedButtons.Pop();
                 PressButton(button);
                 Pressing.Push(true);
             }
-            while (ReleasedButtons.Count > 0)
+            while (ReleasedButtons.TryPop(out var button))
             {
-                var button = ReleasedButtons.Pop();
                 if (buttonsPressed.ContainsKey(button.Button) && buttonsPressed[button.Button])
                 {
                     if (Pressing.Count > 0)
