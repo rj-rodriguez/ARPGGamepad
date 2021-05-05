@@ -8,6 +8,7 @@
 - Dx Overlay not working on WinForm project anymore, some issues with the dlls, will probably remain like this
 - Initial WPF version, supports virtual aim overlay, will support selecting a profile, but no editing for initial version
 - Split Gamepad implementation and created IGamepadHelper, this should allow support for gamepad support other than XInput
+- WindowOverlayHelper based on AirspacePopup implementation shown here: https://stackoverflow.com/questions/6087835/can-i-overlay-a-wpf-window-on-top-of-another by Fredrik Hedblad
 1.3
 - Enabled Toggle mode for buttons
 1.2.9
