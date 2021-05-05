@@ -94,6 +94,8 @@
             this.label22 = new System.Windows.Forms.Label();
             this.cbMouseModifier = new System.Windows.Forms.ComboBox();
             this.chkSpringMode = new System.Windows.Forms.CheckBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.btnUpdate = new System.Windows.Forms.Button();
             this.pnlButtonConfig.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -384,6 +386,7 @@
             // 
             // selProfile
             // 
+            this.selProfile.DisplayMember = "Key";
             this.selProfile.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.selProfile.FormattingEnabled = true;
             this.selProfile.Location = new System.Drawing.Point(63, 39);
@@ -391,6 +394,7 @@
             this.selProfile.Name = "selProfile";
             this.selProfile.Size = new System.Drawing.Size(208, 23);
             this.selProfile.TabIndex = 0;
+            this.selProfile.ValueMember = "Value";
             this.selProfile.SelectedIndexChanged += new System.EventHandler(this.selProfile_SelectedIndexChanged);
             // 
             // label15
@@ -465,6 +469,7 @@
             // 
             // selResolution
             // 
+            this.selResolution.DisplayMember = "Key";
             this.selResolution.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.selResolution.FormattingEnabled = true;
             this.selResolution.Location = new System.Drawing.Point(372, 69);
@@ -472,6 +477,7 @@
             this.selResolution.Name = "selResolution";
             this.selResolution.Size = new System.Drawing.Size(100, 23);
             this.selResolution.TabIndex = 47;
+            this.selResolution.ValueMember = "Value";
             this.selResolution.SelectedIndexChanged += new System.EventHandler(this.selResolution_SelectedIndexChanged);
             // 
             // chkPressed
@@ -503,7 +509,7 @@
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(88, 27);
             this.btnSave.TabIndex = 50;
-            this.btnSave.Text = "Save";
+            this.btnSave.Text = "Save As";
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
@@ -535,6 +541,7 @@
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(181, 23);
             this.txtName.TabIndex = 53;
+            this.txtName.TextChanged += new System.EventHandler(this.txtName_TextChanged);
             // 
             // btnPlus
             // 
@@ -550,7 +557,7 @@
             // 
             // btnAbout
             // 
-            this.btnAbout.Location = new System.Drawing.Point(279, 38);
+            this.btnAbout.Location = new System.Drawing.Point(280, 6);
             this.btnAbout.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnAbout.Name = "btnAbout";
             this.btnAbout.Size = new System.Drawing.Size(88, 27);
@@ -783,12 +790,35 @@
             this.chkSpringMode.Text = "Spring Mode";
             this.chkSpringMode.UseVisualStyleBackColor = true;
             // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(299, 99);
+            this.label7.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(76, 15);
+            this.label7.TabIndex = 68;
+            this.label7.Text = "Right Analog";
+            // 
+            // btnUpdate
+            // 
+            this.btnUpdate.Location = new System.Drawing.Point(280, 38);
+            this.btnUpdate.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.btnUpdate.Name = "btnUpdate";
+            this.btnUpdate.Size = new System.Drawing.Size(88, 27);
+            this.btnUpdate.TabIndex = 69;
+            this.btnUpdate.Text = "Update";
+            this.btnUpdate.UseVisualStyleBackColor = true;
+            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(576, 525);
+            this.Controls.Add(this.btnUpdate);
+            this.Controls.Add(this.label7);
             this.Controls.Add(this.chkSpringMode);
             this.Controls.Add(this.label21);
             this.Controls.Add(this.cbRMouseModifier);
@@ -927,6 +957,8 @@
         private System.Windows.Forms.ComboBox cbMouseModifier;
         private System.Windows.Forms.CheckBox chkSpringMode;
         private System.Windows.Forms.CheckBox chkToggle;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Button btnUpdate;
     }
 }
 

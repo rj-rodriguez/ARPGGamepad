@@ -13,6 +13,7 @@ namespace ARPGGamepadCore
     {
         public const string DefaultProfile = "Default";
         public Dictionary<string, GamepadProfile> Profiles { get; init; }
+        public Dictionary<string, string> Filenames { get; init; }
         public string ProfilesPath { get; init; }
         public int DefaultScreenWidth { get; init; }
         public int DefaultScreenHeight { get; init; }
@@ -24,7 +25,7 @@ namespace ARPGGamepadCore
             ProfilesPath = execPath + @"\Profiles";
 
             Profiles = new Dictionary<string, GamepadProfile>();
-            //ReloadProfiles();
+            Filenames = new Dictionary<string, string>();
         }
 
         public void ReloadProfiles()
@@ -35,10 +36,12 @@ namespace ARPGGamepadCore
 
             Profiles.Clear();
             Profiles.Add(DefaultProfile, config);
+            Filenames.Clear();
             files.ForEach(file =>
             {
                 GamepadProfile fileConfig = LoadProfile(file);
                 Profiles.Add(fileConfig.Name, fileConfig);
+                Filenames.Add(fileConfig.Name, file);
             });
         }
 
@@ -48,12 +51,19 @@ namespace ARPGGamepadCore
             return JsonSerializer.Deserialize<GamepadProfile>(jsonValue, new JsonSerializerOptions { IgnoreReadOnlyProperties = true });
         }
 
-        public void SaveProfile(GamepadProfile config, string saveName)
+        public string GetProfileFilename(string name)
+        {
+            if (Filenames.ContainsKey(name))
+                return Filenames[name];
+            return string.Empty;
+        }
+
+        public void SaveProfile(GamepadProfile config, string saveName, bool overwrite = false)
         {
             if (String.IsNullOrWhiteSpace(saveName))
                 throw new ArgumentException("File needs a name to be saved");
 
-            if (Profiles.ContainsKey(config.Name))
+            if (!overwrite && Profiles.ContainsKey(config.Name))
                 throw new ArgumentException("Profile name already exists");
 
             var jsonData = JsonSerializer.Serialize<GamepadProfile>(config, new JsonSerializerOptions { WriteIndented = true, IgnoreReadOnlyProperties = true });
