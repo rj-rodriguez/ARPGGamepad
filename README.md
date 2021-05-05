@@ -1,11 +1,9 @@
 # ARPGGamepad
 Gamepad controller simulator for Action RPGs
-﻿ARPG Gamepad Controller
-Version 1.2.0
+ARPG Gamepad Controller
+Version 2.0
 
 Developed by Roberto Julián Rodríguez Tapia, part of Cute Kick Studio.
-
-Check us at www.cutekickstudio.com
 
 I enjoy playing ARPG games (Diablo2, Diablo3, Titan Quest, Path of Exile, etc), 
 after having some Carpal Tunnel problems, I had to stop playing exclusively with 
@@ -17,13 +15,12 @@ made for Diablo 3, this app however, lacked a way to aim properly and after it
 stopped being updated, I decided it was time to make my own and thus, created this app.
 I've had a lot of fun working on and using this app and I plan to continue my work on it.
 
-
-This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
-without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-See the GNU General Public License for more details.
-You should have received a copy of the GNU General Public License along with this program.  
-If not, see <http://www.gnu.org/licenses/>.
-
+Some notes on version 2.0
+- WinForm app will only be used for editing the profiles, the directX overlay is not working
+under .Net 5.0.
+- WPF app does support the virtual aim overlay, does not require old directX dlls like the old
+WinForm app, and its going to be the version worked on going forward, though right now will only
+allow choosing a profile and then run the translation, no editing just yet.
 
 
 HELP
@@ -32,8 +29,6 @@ HELP
 
    You need a gamepad with a driver that supports XInput, an Xbox gamepad should work directly,
 you can use a ps3 or ps4 controller provided you install a driver to emulate the Xbox gamepad.
-   DirectX for Virtual Aim Mode, this uses a directx window overlay, at this point, no one should
-have any problems with this.
 
 2. How to use
 
