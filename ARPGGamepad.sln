@@ -7,7 +7,14 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ARPGGamepadCore", "ARPGGame
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ARPGGamepadWinForm", "ARPGGamepadWinForm\ARPGGamepadWinForm.csproj", "{4B72496F-A59C-4CCF-8DB2-222514A2C5B2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ARPGGamepadWPF", "ARPGGamepadWPF\ARPGGamepadWPF.csproj", "{3366A8D7-6F74-4B89-A71A-F2F1AC84B94E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ARPGGamepadWPF", "ARPGGamepadWPF\ARPGGamepadWPF.csproj", "{3366A8D7-6F74-4B89-A71A-F2F1AC84B94E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{23D8E192-241B-4967-914F-F7D738385972}"
+	ProjectSection(SolutionItems) = preProject
+		LICENSE = LICENSE
+		README.md = README.md
+		Versions.txt = Versions.txt
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
