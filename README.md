@@ -79,6 +79,9 @@ Again, version 2 makes this possible, but not planned right now
 
 - Can you add a profile for <GameName>?
 Not really, unless I have the game and play it. But that's what the profile editor is for.
+
+
+
 One note, 2 games I couldn't use this app with are:
 Sacred 2, the way the game handles keyboard and mouse input seems to be lower level that the windows event I use,
 so it doesn't recognize any inputs created by this app.
