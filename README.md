@@ -1,6 +1,6 @@
 # ARPGGamepad
 Gamepad controller simulator for Action RPGs
-ARPG Gamepad Controller
+ARPG Gamepad
 Version 2.0
 
 Developed by Roberto Julián Rodríguez Tapia, part of Cute Kick Studio.
@@ -15,13 +15,6 @@ made for Diablo 3, this app however, lacked a way to aim properly and after it
 stopped being updated, I decided it was time to make my own and thus, created this app.
 I've had a lot of fun working on and using this app and I plan to continue my work on it.
 
-Some notes on version 2.0
-- WinForm app will only be used for editing the profiles, the directX overlay is not working
-under .Net 5.0.
-- WPF app does support the virtual aim overlay, does not require old directX dlls like the old
-WinForm app, and its going to be the version worked on going forward, though right now will only
-allow choosing a profile and then run the translation, no editing just yet.
-
 
 HELP
 
@@ -32,17 +25,16 @@ you can use a ps3 or ps4 controller provided you install a driver to emulate the
 
 2. How to use
 
-   There's a controller combobox, choose the controller you want to translate its input, this
-is just in case there's multiple gamepads on windows so you can choose which one.
-   While the ON checkbox is checked, the app will be translating the gamepad input using the
-current profile, any changes in the Analogs configuration require a reset of the ON checkbox.
-   Changing the profile will automatically load its settings, this doesn't require to reset
-the ON checkbox.
-   Use the Reload button in case you make changes to a profile outside of the app while the
-app is running, you could also close/open the app.
-   
-   Analog Configuration
+Right now its split into 2 apps, the profile editor for edit/creation of profiles and the main
+ARPGGamepad executable where you select a profile and aim mode and does the actual input translation
+The intention is that in the next version, the ProfileEditor app will no longer be needed and all 
+profile operations can be done in the main app.
 
+Profile Editor
+
+- Use the Reload button in case you made changes to a profile outside of the app while the
+app is running, you could also close/open the app.
+Analog Setup
 - Aspect Ratio. For aiming this should map the aspect raito of the current resolution, but it 
 can be customized to the user needs, this indicates the shape of the ellipsis described 
 while moving the analog.
@@ -59,8 +51,36 @@ while you move the analog, otherwise it will do continuous clicks.
 - Mouse Btn. The button in the mouse to press while the analog is above the Deadzone value.
 - Deadzone. A value from 0 t 1, to indicate the minimum the analog needs to move to start
 translating its value to Mouse.
+Buttons Setup
+- Just select the the gamepad button on the bottom left list, and then the keyboard key or 
+mouse click you want that button to translate to and if it should also apply a modifier key
+- Toggle mode checked means the key/click will remain pressed after you release the button, and
+it will release the next time you press the button
 
+
+ARPGGamepad App
+
+- Run the app, select the gamepad, profile and aim mode and click start, 
+it should start translating the selected gamepad input into mouse/keyboard inputs according to the selected profile
+- Virtual Aim creates a transparent window overlay and uses that to draw a yellow reticle when you aim
+with the right analog, only sets the mouse on that position when you press a button, this allows to aim and
+move at the same time, though once you press a button movement will stop while the button is pressed.
+- Mouse Aim moves the mouse directly to where you aim, so you cannot move while aiming, movement also has
+higher priority over aiming.
 
 F. A. Q.
 
-Initial release, so there are no frequently asked questions yet.
+- Can you support other controller drivers?
+Since version 2, its going to be a lot easier to support other gamepad drivers rather than just XInput,
+however, my priority right now is to add Profile Edit capabilities to the main app
+
+- Can you support other Operating System like linux or OsX?
+Again, version 2 makes this possible, but not planned right now
+
+- Can you add a profile for <GameName>?
+Not really, unless I have the game and play it. But that's what the profile editor is for.
+One note, 2 games I couldn't use this app with are:
+Sacred 2, the way the game handles keyboard and mouse input seems to be lower level that the windows event I use,
+so it doesn't recognize any inputs created by this app.
+Wolcen, it can technically work, but the game already sets up mouse movement on gamepads that cannot be disabled,
+so it messes up our mouse movements.
