@@ -18,10 +18,4 @@
     <ProjectReference Include="..\ARPGGamepadCore\ARPGGamepadCore.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <None Update="Reticle.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-  </ItemGroup>
-
 </Project>
