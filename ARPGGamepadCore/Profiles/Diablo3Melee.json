@@ -1,0 +1,247 @@
+{
+  "Name": "Diablo 3 - Melee",
+  "Resolutions": [
+    {
+      "ScreenWidth": 1920,
+      "ScreenHeight": 1080,
+      "LeftAnalog": {
+        "AspectRatioX": 5.0,
+        "AspectRatioY": 5.0,
+        "FixedRadius": true,
+        "OffsetX": -5,
+        "OffsetY": -45,
+        "Radius": 95.0,
+        "InnerRadius": 0.0,
+        "DeadZone": 0.6,
+        "Button": {
+          "Button": "LeftAnalog",
+          "Key": "W",
+          "MouseClick": 0,
+          "Modifier": 0
+        },
+        "KeepPressed": true,
+        "SpringMode": false
+      },
+      "RightAnalog": {
+        "AspectRatioX": 16.0,
+        "AspectRatioY": 9.0,
+        "FixedRadius": false,
+        "OffsetX": 0,
+        "OffsetY": -55,
+        "Radius": 825.0,
+        "InnerRadius": 40.0,
+        "DeadZone": 0.3,
+        "Button": {
+          "Button": "RightAnalog",
+          "Key": "",
+          "MouseClick": 0,
+          "Modifier": 0
+        },
+        "KeepPressed": false,
+        "SpringMode": false
+      }
+    },
+    {
+      "ScreenWidth": 1280,
+      "ScreenHeight": 720,
+      "LeftAnalog": {
+        "AspectRatioX": 5.0,
+        "AspectRatioY": 5.0,
+        "FixedRadius": true,
+        "OffsetX": 0,
+        "OffsetY": -40,
+        "Radius": 65.0,
+        "InnerRadius": 0.0,
+        "DeadZone": 0.6,
+        "Button": {
+          "Button": "LeftAnalog",
+          "Key": "W",
+          "MouseClick": 0,
+          "Modifier": 0
+        },
+        "KeepPressed": true
+      },
+      "RightAnalog": {
+        "AspectRatioX": 16.0,
+        "AspectRatioY": 9.0,
+        "FixedRadius": false,
+        "OffsetX": 0,
+        "OffsetY": 0,
+        "Radius": 650.0,
+        "InnerRadius": 40.0,
+        "DeadZone": 0.3,
+        "Button": {
+          "Button": "RightAnalog",
+          "Key": "",
+          "MouseClick": 0,
+          "Modifier": 0
+        },
+        "KeepPressed": false
+      }
+    },
+    {
+      "ScreenWidth": 1440,
+      "ScreenHeight": 900,
+      "LeftAnalog": {
+        "AspectRatioX": 5.0,
+        "AspectRatioY": 5.0,
+        "FixedRadius": true,
+        "OffsetX": 0,
+        "OffsetY": -45,
+        "Radius": 70.0,
+        "InnerRadius": 0.0,
+        "DeadZone": 0.6,
+        "Button": {
+          "Button": "LeftAnalog",
+          "Key": "W",
+          "MouseClick": 0,
+          "Modifier": 0
+        },
+        "KeepPressed": true
+      },
+      "RightAnalog": {
+        "AspectRatioX": 16.0,
+        "AspectRatioY": 10.0,
+        "FixedRadius": false,
+        "OffsetX": 0,
+        "OffsetY": -45,
+        "Radius": 620.0,
+        "InnerRadius": 40.0,
+        "DeadZone": 0.3,
+        "Button": null,
+        "KeepPressed": false
+      }
+    },
+    {
+      "ScreenWidth": 1536,
+      "ScreenHeight": 1080,
+      "LeftAnalog": {
+        "AspectRatioX": 5.0,
+        "AspectRatioY": 5.0,
+        "FixedRadius": true,
+        "OffsetX": -5,
+        "OffsetY": -145,
+        "Radius": 70.0,
+        "InnerRadius": 0.0,
+        "DeadZone": 0.6,
+        "Button": {
+          "Button": "LeftAnalog",
+          "Key": "W",
+          "MouseClick": 0,
+          "Modifier": 0
+        },
+        "KeepPressed": true
+      },
+      "RightAnalog": {
+        "AspectRatioX": 16.0,
+        "AspectRatioY": 10.0,
+        "FixedRadius": false,
+        "OffsetX": 0,
+        "OffsetY": -155,
+        "Radius": 600.0,
+        "InnerRadius": 40.0,
+        "DeadZone": 0.3,
+        "Button": null,
+        "KeepPressed": false
+      }
+    }
+  ],
+  "Buttons": {
+    "X": {
+      "Button": "X",
+      "Key": "None",
+      "MouseClick": 1,
+      "Modifier": 1
+    },
+    "Y": {
+      "Button": "Y",
+      "Key": "D1",
+      "MouseClick": 0,
+      "Modifier": 1
+    },
+    "A": {
+      "Button": "A",
+      "Key": "None",
+      "MouseClick": 1,
+      "Modifier": 0
+    },
+    "B": {
+      "Button": "B",
+      "Key": "Q",
+      "MouseClick": 0,
+      "Modifier": 0
+    },
+    "DUp": {
+      "Button": "DUp",
+      "Key": "I",
+      "MouseClick": 0,
+      "Modifier": 0
+    },
+    "DDown": {
+      "Button": "DDown",
+      "Key": "F",
+      "MouseClick": 0,
+      "Modifier": 0
+    },
+    "DLeft": {
+      "Button": "DLeft",
+      "Key": "S",
+      "MouseClick": 0,
+      "Modifier": 0
+    },
+    "DRight": {
+      "Button": "DRight",
+      "Key": "P",
+      "MouseClick": 0,
+      "Modifier": 0
+    },
+    "LB": {
+      "Button": "LB",
+      "Key": "D2",
+      "MouseClick": 0,
+      "Modifier": 1
+    },
+    "RB": {
+      "Button": "RB",
+      "Key": "None",
+      "MouseClick": 3,
+      "Modifier": 1
+    },
+    "LT": {
+      "Button": "LT",
+      "Key": "D4",
+      "MouseClick": 0,
+      "Modifier": 1
+    },
+    "RT": {
+      "Button": "RT",
+      "Key": "D3",
+      "MouseClick": 0,
+      "Modifier": 1
+    },
+    "LC": {
+      "Button": "LC",
+      "Key": "T",
+      "MouseClick": 0,
+      "Modifier": 0
+    },
+    "RC": {
+      "Button": "RC",
+      "Key": "None",
+      "MouseClick": 0,
+      "Modifier": 3
+    },
+    "Select": {
+      "Button": "Select",
+      "Key": "Tab",
+      "MouseClick": 0,
+      "Modifier": 0
+    },
+    "Start": {
+      "Button": "Start",
+      "Key": "Space",
+      "MouseClick": 0,
+      "Modifier": 0
+    }
+  }
+}

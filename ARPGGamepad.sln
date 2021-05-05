@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31205.134
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ARPGGamepadCore", "ARPGGamepadCore\ARPGGamepadCore.csproj", "{108CFAAA-2210-4E0E-B6B2-3BF55D2A5B41}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ARPGGamepadWinForm", "ARPGGamepadWinForm\ARPGGamepadWinForm.csproj", "{4B72496F-A59C-4CCF-8DB2-222514A2C5B2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ARPGGamepadWPF", "ARPGGamepadWPF\ARPGGamepadWPF.csproj", "{3366A8D7-6F74-4B89-A71A-F2F1AC84B94E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{108CFAAA-2210-4E0E-B6B2-3BF55D2A5B41}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{108CFAAA-2210-4E0E-B6B2-3BF55D2A5B41}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{108CFAAA-2210-4E0E-B6B2-3BF55D2A5B41}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{108CFAAA-2210-4E0E-B6B2-3BF55D2A5B41}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4B72496F-A59C-4CCF-8DB2-222514A2C5B2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4B72496F-A59C-4CCF-8DB2-222514A2C5B2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4B72496F-A59C-4CCF-8DB2-222514A2C5B2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4B72496F-A59C-4CCF-8DB2-222514A2C5B2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3366A8D7-6F74-4B89-A71A-F2F1AC84B94E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3366A8D7-6F74-4B89-A71A-F2F1AC84B94E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3366A8D7-6F74-4B89-A71A-F2F1AC84B94E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3366A8D7-6F74-4B89-A71A-F2F1AC84B94E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {FACD118B-3C26-48FF-841A-CED6BF9D9081}
+	EndGlobalSection
+EndGlobal

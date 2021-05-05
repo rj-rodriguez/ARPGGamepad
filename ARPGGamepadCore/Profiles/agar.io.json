@@ -1,0 +1,143 @@
+{
+  "Name": "agar.io",
+  "Resolutions": [
+    {
+      "ScreenWidth": 1920,
+      "ScreenHeight": 1080,
+      "LeftAnalog": {
+        "AspectRatioX": 5.0,
+        "AspectRatioY": 5.0,
+        "FixedRadius": true,
+        "OffsetX": 0,
+        "OffsetY": 20,
+        "Radius": 90.0,
+        "InnerRadius": 0.0,
+        "DeadZone": 0.6,
+        "Button": {
+          "Button": "LeftAnalog",
+          "Key": "None",
+          "MouseClick": 0,
+          "Modifier": 0
+        },
+        "KeepPressed": false,
+        "SpringMode": false
+      },
+      "RightAnalog": {
+        "AspectRatioX": 16.0,
+        "AspectRatioY": 9.0,
+        "FixedRadius": false,
+        "OffsetX": 0,
+        "OffsetY": 0,
+        "Radius": 300.0,
+        "InnerRadius": 20.0,
+        "DeadZone": 0.3,
+        "Button": {
+          "Button": "RightAnalog",
+          "Key": "",
+          "MouseClick": 0,
+          "Modifier": 0
+        },
+        "KeepPressed": false,
+        "SpringMode": false
+      }
+    }
+  ],
+  "Buttons": {
+    "X": {
+      "Button": "X",
+      "Key": "W",
+      "MouseClick": 0,
+      "Modifier": 0
+    },
+    "Y": {
+      "Button": "Y",
+      "Key": "",
+      "MouseClick": 3,
+      "Modifier": 1
+    },
+    "A": {
+      "Button": "A",
+      "Key": "Space",
+      "MouseClick": 0,
+      "Modifier": 0
+    },
+    "B": {
+      "Button": "B",
+      "Key": "Q",
+      "MouseClick": 0,
+      "Modifier": 1
+    },
+    "DUp": {
+      "Button": "DUp",
+      "Key": "D3",
+      "MouseClick": 0,
+      "Modifier": 0
+    },
+    "DDown": {
+      "Button": "DDown",
+      "Key": "D5",
+      "MouseClick": 0,
+      "Modifier": 0
+    },
+    "DLeft": {
+      "Button": "DLeft",
+      "Key": "D2",
+      "MouseClick": 0,
+      "Modifier": 0
+    },
+    "DRight": {
+      "Button": "DRight",
+      "Key": "D4",
+      "MouseClick": 0,
+      "Modifier": 0
+    },
+    "LB": {
+      "Button": "LB",
+      "Key": "W",
+      "MouseClick": 0,
+      "Modifier": 1
+    },
+    "RB": {
+      "Button": "RB",
+      "Key": "R",
+      "MouseClick": 0,
+      "Modifier": 1
+    },
+    "LT": {
+      "Button": "LT",
+      "Key": "E",
+      "MouseClick": 0,
+      "Modifier": 1
+    },
+    "RT": {
+      "Button": "RT",
+      "Key": "T",
+      "MouseClick": 0,
+      "Modifier": 1
+    },
+    "LC": {
+      "Button": "LC",
+      "Key": "",
+      "MouseClick": 0,
+      "Modifier": 2
+    },
+    "RC": {
+      "Button": "RC",
+      "Key": "",
+      "MouseClick": 1,
+      "Modifier": 0
+    },
+    "Select": {
+      "Button": "Select",
+      "Key": "Escape",
+      "MouseClick": 0,
+      "Modifier": 0
+    },
+    "Start": {
+      "Button": "Start",
+      "Key": "D1",
+      "MouseClick": 0,
+      "Modifier": 0
+    }
+  }
+}
