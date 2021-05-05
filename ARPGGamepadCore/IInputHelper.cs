@@ -6,7 +6,6 @@ namespace ARPGGamepadCore
     public interface IInputHelper
     {
         short ThumbMaxValue { get; }
-        int GetLetterKey(string letter);
         void SendKeyDown(string key, MouseClick mouse, Modifiers modifier);
         void SendKeyUp(string key, MouseClick mouse, Modifiers modifier);
         void SendModifierDown(Modifiers modifier);

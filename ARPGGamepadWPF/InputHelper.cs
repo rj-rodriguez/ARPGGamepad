@@ -48,19 +48,6 @@ namespace ARPGGamepadWPF
             int dwFlags,
             int dwExtraInfo);
 
-        public int GetLetterKey(string letter)
-        {
-            Keys key;
-            if (Enum.TryParse<Keys>(letter, out key))
-            {
-                return (int)key;
-            }
-            else
-            {
-                return 0;
-            }
-        }
-
         public void SendKeyDown(string key, MouseClick mouse, Modifiers modifier)
         {
             if (modifier != Modifiers.None)
@@ -69,7 +56,7 @@ namespace ARPGGamepadWPF
             }
             if (!String.IsNullOrEmpty(key))
             {
-                keybd_event((byte)GetLetterKey(key), 0, KEYEVENTF_EXTENDEDKEY, 0);
+                keybd_event((byte)ARPGGamepadKeys.GetLetterKey(key), 0, KEYEVENTF_EXTENDEDKEY, 0);
             }
             if (mouse != MouseClick.None)
             {
@@ -85,7 +72,7 @@ namespace ARPGGamepadWPF
             }
             if (!String.IsNullOrEmpty(key))
             {
-                keybd_event((byte)GetLetterKey(key), 0, KEYEVENTF_EXTENDEDKEY | KEYEVENTF_KEYUP, 0);
+                keybd_event((byte)ARPGGamepadKeys.GetLetterKey(key), 0, KEYEVENTF_EXTENDEDKEY | KEYEVENTF_KEYUP, 0);
             }
             if (modifier != Modifiers.None)
             {

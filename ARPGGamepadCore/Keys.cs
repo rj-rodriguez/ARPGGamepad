@@ -5,8 +5,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ARPGGamepadWPF
+namespace ARPGGamepadCore
 {
+    public static class ARPGGamepadKeys
+    {
+        public static int GetLetterKey(string letter)
+        {
+            return Enum.TryParse(letter, out Keys key) ? (int)key : 0;
+        }
+
+    }
+
     //
     // Summary:
     //     Specifies key codes and modifiers.
