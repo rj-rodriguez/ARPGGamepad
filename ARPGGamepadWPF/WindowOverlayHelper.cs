@@ -18,31 +18,31 @@ namespace ARPGGamepadWPF
         public static readonly DependencyProperty IsTopmostProperty =
             DependencyProperty.Register("IsTopmost",
                                         typeof(bool),
-                                        typeof(PopupOverlayHelper),
+                                        typeof(WindowOverlayHelper),
                                         new FrameworkPropertyMetadata(false, OnIsTopmostChanged));
 
         public static readonly DependencyProperty FollowPlacementTargetProperty =
             DependencyProperty.RegisterAttached("FollowPlacementTarget",
                                                 typeof(bool),
-                                                typeof(PopupOverlayHelper),
+                                                typeof(WindowOverlayHelper),
                                                 new UIPropertyMetadata(false));
 
         public static readonly DependencyProperty AllowOutsideScreenPlacementProperty =
             DependencyProperty.RegisterAttached("AllowOutsideScreenPlacement",
                                                 typeof(bool),
-                                                typeof(PopupOverlayHelper),
+                                                typeof(WindowOverlayHelper),
                                                 new UIPropertyMetadata(false));
 
         public static readonly DependencyProperty ParentWindowProperty =
             DependencyProperty.RegisterAttached("ParentWindow",
                                                 typeof(Window),
-                                                typeof(PopupOverlayHelper),
+                                                typeof(WindowOverlayHelper),
                                                 new UIPropertyMetadata(null, ParentWindowPropertyChanged));
 
         public static readonly DependencyProperty FullscreenProperty =
             DependencyProperty.RegisterAttached("Fullscreen",
                                                 typeof(bool),
-                                                typeof(PopupOverlayHelper),
+                                                typeof(WindowOverlayHelper),
                                                 new UIPropertyMetadata(false));
 
         private static void OnIsTopmostChanged(DependencyObject source, DependencyPropertyChangedEventArgs e)
