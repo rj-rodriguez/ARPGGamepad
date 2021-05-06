@@ -19,7 +19,7 @@ namespace ARPGGamepadWinForm
             InitializeComponent();
 
             AboutText = @"ARPG Gamepad Controller
-Version 1.3
+Version 2.1
 Developed by Roberto Julián Rodríguez Tapia, part of Cute Kick Studio.
 For help on how to use it check the Readme.txt file
 
