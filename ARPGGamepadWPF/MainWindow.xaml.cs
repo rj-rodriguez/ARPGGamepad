@@ -32,8 +32,6 @@ namespace ARPGGamepadWPF
         IGamepadTranslator gamepadAimOverlayTranslator;
         IGamepadTranslator gamepadBasicTranslator;
 
-        //private bool running = false;
-
         public MainWindow(IInputHelper inputHelper, IOverlayHelper overlayHelper, IGamepadHelper gamepadHelper)
         {
             InitializeComponent();
@@ -202,5 +200,18 @@ namespace ARPGGamepadWPF
             }
         }
 
+        private void EditButton_Click(object sender, RoutedEventArgs e)
+        {
+            ViewModel.Editor = new EditorWindow();
+            ViewModel.Editor.Owner = this;
+            ViewModel.Editor.DataContext = new EditorViewModel { Profile = ViewModel.Profile };
+            ViewModel.Editor.Closed += Editor_Closed;
+            ViewModel.Editor.Show();
+        }
+
+        private void Editor_Closed(object sender, EventArgs e)
+        {
+            ViewModel.Editor = null;
+        }
     }
 }

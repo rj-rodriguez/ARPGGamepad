@@ -25,6 +25,7 @@ namespace ARPGGamepadWPF
             };
         }
 
+        public EditorWindow Editor { get; set; }
         public ProfileManager ProfileManager { get; set;}
         public GamepadProfile Profile { get; set; }
         public ResolutionConfig SelectedResolution { get; set; }
@@ -33,6 +34,7 @@ namespace ARPGGamepadWPF
         public string Status => "The last status of the app";
         public List<KeyValuePair<int, string>> Gamepads { get; set; }
         public bool Running => false;
+        public bool EditorClosed => true;
     }
 
     public class AppViewModel : INotifyPropertyChanged
@@ -41,6 +43,13 @@ namespace ARPGGamepadWPF
         protected void OnPropertyChanged([CallerMemberName] string name = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+        }
+
+        private EditorWindow editor;
+        public EditorWindow Editor 
+        {
+            get => editor;
+            set { editor = value; OnPropertyChanged(); OnPropertyChanged("EditorClosed"); }
         }
 
         private ProfileManager profileManager;
@@ -92,6 +101,7 @@ namespace ARPGGamepadWPF
             set { running = value; OnPropertyChanged(); OnPropertyChanged("Idle"); }
         }
         public bool Idle => !Running;
+        public bool EditorClosed => Editor == null;
 
     }
 }

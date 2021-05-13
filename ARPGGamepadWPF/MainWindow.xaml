@@ -27,7 +27,7 @@
             <ColumnDefinition />
             <ColumnDefinition Width="1*" />
         </Grid.ColumnDefinitions>
-        <Button x:Name="StartButton" Content="Start" Grid.Row="1" Grid.Column="3" VerticalAlignment="Top" Click="StartButton_Click" HorizontalAlignment="Stretch"/>
+        <Button x:Name="StartButton" IsEnabled="{Binding EditorClosed}" Content="Start" Grid.Row="1" Grid.Column="3" VerticalAlignment="Top" Click="StartButton_Click" HorizontalAlignment="Stretch"/>
         <StatusBar x:Name="StatusBar" Grid.Row="4" Grid.ColumnSpan="5">
             <TextBlock x:Name="StatusBarMessage" Text="{Binding Status}" TextWrapping="NoWrap"/>
         </StatusBar>
@@ -35,13 +35,14 @@
         <Grid/>
         <ComboBox x:Name="GamepadSelector" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Top" ItemsSource="{Binding Gamepads}" SelectedIndex="0" Width="120" DisplayMemberPath="Value" SelectionChanged="GamepadSelector_SelectionChanged" Margin="0,10,0,0" />
         <Label Content="Selected gamepad" HorizontalAlignment="Left" Margin="0,8,0,0" Grid.Row="1" VerticalAlignment="Top" Grid.Column="1"/>
-        <ComboBox x:Name="ProfileSelector" Grid.Column="1" HorizontalAlignment="Right" Margin="0,10,0,0" Grid.Row="2" VerticalAlignment="Top" Width="120" ItemsSource="{Binding ProfileManager.Profiles}" SelectedIndex="0" DisplayMemberPath="Value.Name" SelectedValuePath="Key" SelectionChanged="ProfileSelector_SelectionChanged"/>
+        <ComboBox x:Name="ProfileSelector" IsEnabled="{Binding EditorClosed}" Grid.Column="1" HorizontalAlignment="Right" Margin="0,10,0,0" Grid.Row="2" VerticalAlignment="Top" Width="120" ItemsSource="{Binding ProfileManager.Profiles}" SelectedIndex="0" DisplayMemberPath="Value.Name" SelectedValuePath="Key" SelectionChanged="ProfileSelector_SelectionChanged"/>
         <Label Content="Select Profile" HorizontalAlignment="Left" Margin="0,8,0,0" Grid.Row="2" VerticalAlignment="Top" Grid.Column="1"/>
-        <ComboBox x:Name="ResolutionSelector" Grid.Column="1" HorizontalAlignment="Right" Grid.Row="2" VerticalAlignment="Bottom" Width="120" Margin="0,0,0,10" SelectedIndex="0" ItemsSource="{Binding Profile.Resolutions}" DisplayMemberPath="Name" SelectionChanged="ResolutionSelector_SelectionChanged"/>
+        <ComboBox x:Name="ResolutionSelector" IsEnabled="{Binding EditorClosed}" Grid.Column="1" HorizontalAlignment="Right" Grid.Row="2" VerticalAlignment="Bottom" Width="120" Margin="0,0,0,10" SelectedIndex="0" ItemsSource="{Binding Profile.Resolutions}" DisplayMemberPath="Name" SelectionChanged="ResolutionSelector_SelectionChanged"/>
         <Label Content="Select Resolution" HorizontalAlignment="Left" Margin="0,0,0,8" Grid.Row="2" VerticalAlignment="Bottom" Grid.Column="1"/>
         <StackPanel Grid.Column="1" Grid.Row="3" Margin="0,18,0,0">
             <RadioButton x:Name="VirtualAimMode" Content="Virtual Aim" IsChecked="True" IsEnabled="{Binding Idle}"/>
             <RadioButton x:Name="BasicMode" Content="Mouse Aim" IsEnabled="{Binding Idle}"/>
         </StackPanel>
+        <Button x:Name="EditButton" IsEnabled="{Binding EditorClosed}" Content="Edit" Grid.Column="3" HorizontalAlignment="Stretch" Margin="0,18,0,0" Grid.Row="2" VerticalAlignment="Top" Click="EditButton_Click"/>
     </Grid>
 </Window>
